@@ -1,7 +1,6 @@
 fun main() {
-    val myTemp: Temperature = Temperature(Temperature.Unit.K)
+    val myCelTemp: Celsius = Celsius()
 
-    myTemp.setTemp(0.0)
-
-    println("The temperature is ${myTemp.getTemp(Temperature.Unit.K)}")
+    println("The celsius temperature is ${myCelTemp.getTemp()}")
+    println("The celsius temperature in K is ${myCelTemp.getTempIn(Temperature.Unit.K)}")
 }

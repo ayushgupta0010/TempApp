@@ -1,7 +1,7 @@
-class Temperature (
+abstract class Temperature (
     val unit: Unit,
     private var temp: Double = 0.0
-) {
+) : ITemperature {
 
     init {
         // Temp is stored as Kelvin
@@ -20,16 +20,29 @@ class Temperature (
         setTemp(unit, temp)
     }
 
-    fun getTemp (newUnit: Unit = unit) = when (newUnit) {
-        Unit.C -> temp - 273.15
+    protected fun getTemp(unit: Unit): Double = when (unit) {
+        Unit.K -> temp + 273.15
         Unit.F -> ((temp - 273.15) * (9.0 / 5.0)) + 32
-        else -> temp
+        else -> this.temp
     }
 
     enum class Unit {
-        C, F, K
+      C, F, K
     }
-
 }
 
 
+class Celsius(temp: Double = 0.0) : Temperature(Temperature.Unit.C, temp) {
+    override fun getTemp() = super.getTemp(unit)
+    override fun getTempIn(unit: Unit) = super.getTemp(unit)
+}
+
+class Kelvin(temp: Double = 0.0) : Temperature(Temperature.Unit.K, temp) {
+    override fun getTemp() = super.getTemp(unit)
+    override fun getTempIn(unit: Unit) = super.getTemp(unit)
+}
+
+class Fahrenheit(temp: Double = 0.0) : Temperature(Temperature.Unit.F, temp) {
+    override fun getTemp() = super.getTemp(unit)
+    override fun getTempIn(unit: Unit) = super.getTemp(unit)
+}
