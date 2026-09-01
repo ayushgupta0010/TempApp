@@ -21,7 +21,7 @@ abstract class Temperature (
     }
 
     protected fun getTemp(unit: Unit): Double = when (unit) {
-        Unit.K -> temp + 273.15
+        Unit.K -> temp - 273.15
         Unit.F -> ((temp - 273.15) * (9.0 / 5.0)) + 32
         else -> this.temp
     }
